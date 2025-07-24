@@ -2,7 +2,6 @@ import streamlit as st
 from attend_selenium import get_work_codes, run_scraper, BASE_URL
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
-from webdriver_manager.chrome import ChromeDriverManager
 from bs4 import BeautifulSoup
 import time
 
@@ -18,10 +17,12 @@ if 'driver' not in st.session_state:
 
 def init_driver():
     options = webdriver.ChromeOptions()
-    options.add_argument('--headless')
-    options.add_argument('--no-sandbox')
-    options.add_argument('--disable-dev-shm-usage')
-    return webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options)
+    options.add_argument("--headless")
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
+    options.add_argument("--disable-gpu")
+    options.add_argument("--window-size=1920x1080")
+    return webdriver.Chrome(service=ChromeService(), options=options)
 
 @st.cache_data
 def get_available_dates():
