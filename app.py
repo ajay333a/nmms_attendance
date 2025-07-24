@@ -22,6 +22,7 @@ def init_driver():
     options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--disable-gpu")
     options.add_argument("--window-size=1920x1080")
+    options.binary_location = "/usr/bin/chromium-browser"
     return webdriver.Chrome(service=ChromeService(), options=options)
 
 @st.cache_data
