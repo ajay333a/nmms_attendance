@@ -23,7 +23,10 @@ def init_driver():
     options.add_argument("--disable-gpu")
     options.add_argument("--window-size=1920x1080")
     options.binary_location = "/usr/bin/chromium"
-    return webdriver.Chrome(service=ChromeService(), options=options)
+    
+    service = ChromeService(executable_path="/usr/bin/chromedriver")
+    
+    return webdriver.Chrome(service=service, options=options)
 
 @st.cache_data
 def get_available_dates():
